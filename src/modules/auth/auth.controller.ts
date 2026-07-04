@@ -13,6 +13,7 @@ const createUser = async (req: Request, res: Response) => {
     const result = await authServices.loginUserIntoDB();
   } catch (error: any) {}
 };
+
 const loginUser = async (req: Request, res: Response) => {};
 const authControllers = {
   createUser,
