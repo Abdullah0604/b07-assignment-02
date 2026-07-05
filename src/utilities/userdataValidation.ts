@@ -31,10 +31,10 @@ export const userDataValidation = (userData: Record<string, unknown>) => {
 
   if (!role) {
     return (message =
-      "Role is required. Please provide your role and remember role can be either admin or customer.");
+      "Role is required. Please provide your role and remember role can be either contributor or maintainer.");
   } else {
     if (!roles.includes(role as string)) {
-      return (message = "role must be either admin or customer.");
+      return (message = "role must be either contributor or maintainer.");
     }
   }
 

@@ -7,7 +7,7 @@ export const pool = new Pool({
 
 export const initDB = async () => {
   await pool.query(`
-        CREATE TABLE users(
+        CREATE TABLE IF NOT EXISTS users(
         id SERIAL PRIMARY KEY,
         name VARCHAR(200) NOT NULL,
         email VARCHAR(300) UNIQUE NOT NULL ,
@@ -19,7 +19,7 @@ export const initDB = async () => {
         `);
 
   await pool.query(`
-        CREATE TABLE issues (
+        CREATE TABLE IF NOT EXISTS issues (
         id SERIAL PRIMARY KEY,
         title VARCHAR(150) NOT NULL,
         description TEXT NOT NULL,
