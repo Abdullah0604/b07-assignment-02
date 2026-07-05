@@ -37,7 +37,30 @@ const createUser = async (req: Request, res: Response) => {
   }
 };
 
-const loginUser = async (req: Request, res: Response) => {};
+const loginUser = async (req: Request, res: Response) => {
+  try {
+    const result = await authServices.loginUserIntoDB(req.body);
+
+    // console.log(result);
+    if (!result) {
+      return sendError(
+        res,
+        401,
+        "Invalid credentials",
+        "Invalid email or password",
+      );
+    }
+
+    return sendSuccess(res, 200, "Login successful", {
+      token: result.token,
+      user: result.user,
+    });
+  } catch (error: any) {
+    // console.log(error);
+
+    sendError(res, 500, "Failed to Login", error.message);
+  }
+};
 const authControllers = {
   createUser,
   loginUser,
