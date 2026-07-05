@@ -13,7 +13,7 @@ const createUser = async (req: Request, res: Response) => {
   try {
     const result = await authServices.createUserIntoDB(req.body);
 
-    console.log("create user:  ", result);
+    // console.log("create user:  ", result);
     if (result.rows.length) {
       return sendSuccess(
         res,
@@ -23,7 +23,7 @@ const createUser = async (req: Request, res: Response) => {
       );
     }
   } catch (error: any) {
-    console.log(error);
+    // console.log(error);
     if (error.code === "23505") {
       return sendError(
         res,
