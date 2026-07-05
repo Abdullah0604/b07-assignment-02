@@ -1,7 +1,7 @@
 export const userDataValidation = (userData: Record<string, unknown>) => {
   let message = "";
-  const { name, email, password, phone, role } = userData;
-  const roles = ["admin", "customer"];
+  const { name, email, password, role } = userData;
+  const roles = ["contributor", "maintainer"];
 
   if (!name) {
     return (message = "Name is required. Please provide your name");
@@ -13,6 +13,12 @@ export const userDataValidation = (userData: Record<string, unknown>) => {
     if (email !== (email as string).toLowerCase()) {
       return (message = "All character of Email must be in lowercase.");
     }
+    if (
+      !(email as string).includes("@") ||
+      !(email as string).includes(".com")
+    ) {
+      return (message = "Email should be included @ and .com");
+    }
   }
 
   if (!password) {
@@ -21,11 +27,6 @@ export const userDataValidation = (userData: Record<string, unknown>) => {
     if (!(password.toString().length >= 6)) {
       return (message = "Password must be at least 6 character");
     }
-  }
-
-  if (!phone) {
-    return (message =
-      "Phone Number is required. Please provide your phone number");
   }
 
   if (!role) {
